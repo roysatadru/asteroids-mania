@@ -1,3 +1,3 @@
 export const App = () => {
-  return <div>Asteroid Mania World!</div>;
+  return <div>Welcome to Asteroids Mania!</div>;
 };
