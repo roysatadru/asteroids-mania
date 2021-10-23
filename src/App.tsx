@@ -1,4 +1,13 @@
-import { Key, useEffect, useState } from 'react';
+import { Fragment, Key, useEffect, useState } from 'react';
+import { TextField, TextFieldProps } from '@mui/material';
+import {
+  DateRangePicker,
+  DateRange,
+  DateRangeDelimiter,
+  LocalizationProvider,
+} from '@material-ui/pickers';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
+import enLocale from 'date-fns/locale/en-US';
 
 import { axios, URIS } from './api';
 import { Asteroid } from './models/Asteroid';
@@ -6,6 +15,7 @@ import { extractAsteroidInfoFromApiResponse } from './utility/mapping-info';
 
 export const App = () => {
   const [asteroidsList, setAsteroidsList] = useState<Asteroid[]>([]);
+  const [dateRange, setDateRange] = useState<DateRange<Date>>([null, null]);
 
   useEffect(() => {
     axios
@@ -29,8 +39,29 @@ export const App = () => {
   }, []);
 
   return (
-    <>
+    <LocalizationProvider dateAdapter={DateFnsAdapter} locale={enLocale}>
       <div>Welcome to Asteroids Mania!</div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '40px 32px',
+        }}
+      >
+        <DateRangePicker
+          startText="Start Date"
+          endText="End Date"
+          value={dateRange}
+          onChange={newValue => setDateRange(newValue)}
+          renderInput={(startProps, endProps) => (
+            <Fragment>
+              <TextField {...(startProps as TextFieldProps)} />
+              <DateRangeDelimiter> to </DateRangeDelimiter>
+              <TextField {...(endProps as TextFieldProps)} />
+            </Fragment>
+          )}
+        />
+      </div>
       {asteroidsList.map(astInfo => (
         <div
           style={{
@@ -46,6 +77,6 @@ export const App = () => {
           <pre>{JSON.stringify(astInfo, undefined, 2)}</pre>
         </div>
       ))}
-    </>
+    </LocalizationProvider>
   );
 };
