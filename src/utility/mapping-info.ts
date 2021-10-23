@@ -43,7 +43,7 @@ export const extractAsteroidInfoFromApiResponse: ExtractAsteroidInfoFromApiRespo
 
       return {
         id: astInfo.id,
-        name: astInfo.name_limited,
+        name: astInfo.name,
         isPotentiallyHazardousAsteroid:
           astInfo.is_potentially_hazardous_asteroid,
         estimatedDiameterInKms: {
