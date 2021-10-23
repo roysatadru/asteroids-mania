@@ -6,10 +6,14 @@ import { DateComponent } from './components/DateComponent/DateComponent';
 import { Asteroid } from './models/Asteroid';
 import { extractAsteroidInfoFromApiResponse } from './utility/mapping-info';
 import { AsteroidCardList } from './containers/AsteroidCardList';
+import { DateBasedAsteroidList } from './containers/DateBasedAsteroidList';
 
 export const App = () => {
   const [asteroidsList, setAsteroidsList] = useState<Asteroid[]>([]);
-  const [dateRange, setDateRange] = useState<DateRange<Date>>([null, null]);
+  const [[startDate, endDate], setDateRange] = useState<DateRange<Date>>([
+    null,
+    null,
+  ]);
 
   useEffect(() => {
     axios
@@ -46,10 +50,10 @@ export const App = () => {
         <DateComponent onChange={newValue => setDateRange(newValue)} />
       </div>
 
-      {dateRange.findIndex(date => !date) !== -1 ? (
+      {!startDate || !endDate ? (
         <AsteroidCardList listData={asteroidsList} />
       ) : (
-        <Fragment></Fragment>
+        <DateBasedAsteroidList startDate={startDate} endDate={endDate} />
       )}
     </Fragment>
   );
