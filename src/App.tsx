@@ -1,10 +1,11 @@
-import { Fragment, Key, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { DateRange } from '@material-ui/pickers/DateRangePicker/RangeTypes';
 
 import { axios, URIS } from './api';
 import { DateComponent } from './components/DateComponent/DateComponent';
 import { Asteroid } from './models/Asteroid';
 import { extractAsteroidInfoFromApiResponse } from './utility/mapping-info';
+import { AsteroidCardList } from './containers/AsteroidCardList';
 
 export const App = () => {
   const [asteroidsList, setAsteroidsList] = useState<Asteroid[]>([]);
@@ -34,6 +35,7 @@ export const App = () => {
   return (
     <Fragment>
       <div>Welcome to Asteroids Mania!</div>
+
       <div
         style={{
           display: 'flex',
@@ -43,21 +45,12 @@ export const App = () => {
       >
         <DateComponent onChange={newValue => setDateRange(newValue)} />
       </div>
-      {asteroidsList.map(astInfo => (
-        <div
-          style={{
-            width: '90%',
-            maxWidth: 600,
-            margin: 'auto',
-            marginBottom: 40,
-            padding: 16,
-            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
-          }}
-          key={astInfo.id as Key}
-        >
-          <pre>{JSON.stringify(astInfo, undefined, 2)}</pre>
-        </div>
-      ))}
+
+      {dateRange.findIndex(date => !date) !== -1 ? (
+        <AsteroidCardList listData={asteroidsList} />
+      ) : (
+        <Fragment></Fragment>
+      )}
     </Fragment>
   );
 };
