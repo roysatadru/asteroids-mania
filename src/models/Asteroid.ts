@@ -15,4 +15,5 @@ export interface Asteroid {
 export interface AsteroidFullDetails extends Asteroid {
   shortName?: String;
   absoluteMagnitudeH: number;
+  nasaJplUrl: String;
 }
