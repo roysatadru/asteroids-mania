@@ -13,6 +13,6 @@ export interface Asteroid {
 }
 
 export interface AsteroidFullDetails extends Asteroid {
-  fullName: String;
+  shortName?: String;
   absoluteMagnitudeH: number;
 }
