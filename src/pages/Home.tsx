@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DateRange } from '@material-ui/pickers/DateRangePicker/RangeTypes';
 
 import { axios, URIS } from '../api';

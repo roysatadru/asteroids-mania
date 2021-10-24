@@ -1,8 +1,10 @@
-import { styled, alpha } from '@mui/material';
+import { JSXElementConstructor } from 'react';
+import { styled, alpha, Box } from '@mui/material';
+import { Link, LinkProps } from 'react-router-dom';
 
 import { LogoIcon } from '../../icons/Logo';
 
-const Container = styled('div')(({ theme }) => ({
+const Container = styled(Box)(({ theme }) => ({
   position: 'fixed',
   top: 0,
   left: 0,
@@ -13,12 +15,12 @@ const Container = styled('div')(({ theme }) => ({
   alignItems: 'center',
 }));
 
-const LogoContainer = styled('div')(({ theme }) => ({
+const LogoContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   marginRight: theme.spacing(3),
 }));
 
-const LogoBackground = styled('div')(({ theme }) => ({
+const LogoBackground = styled(Box)(({ theme }) => ({
   background: '#fe336f',
   borderRadius: theme.shape.borderRadius,
   boxShadow: `0 0 0 5px #ffbd68, 0 2px 15px 5px ${alpha('#fff', 0.4)}`,
@@ -54,14 +56,29 @@ const LogoIconWithStyles = styled(LogoIcon)(({ theme }) => ({
   zIndex: 2,
 }));
 
+const StyledLink = styled<JSXElementConstructor<Omit<LinkProps, 'to'>>>(
+  props => (
+    <Link
+      to={{
+        pathname: '/home',
+      }}
+      {...props}
+    />
+  ),
+)({
+  textDecoration: 'none',
+  color: 'inherit',
+  display: 'block',
+});
+
 export const Logo = () => {
   return (
     <Container>
       <LogoContainer>
-        <LogoBackground />
+        <LogoBackground component={StyledLink} />
         <LogoIconWithStyles />
       </LogoContainer>
-      Asteroids Mania
+      <StyledLink>Asteroids Mania</StyledLink>
     </Container>
   );
 };
