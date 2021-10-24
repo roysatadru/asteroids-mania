@@ -2,11 +2,12 @@ import { Fragment, useEffect, useState } from 'react';
 import { DateRange } from '@material-ui/pickers/DateRangePicker/RangeTypes';
 
 import { axios, URIS } from '../api';
-import { DateComponent } from '../components/DateComponent/DateComponent';
+import { DateComponent } from '../components/DateComponent';
 import { Asteroid } from '../models/Asteroid';
 import { extractAsteroidInfoFromApiResponse } from '../utility/mapping-info';
 import { AsteroidCardList } from '../containers/AsteroidCardList';
 import { DateBasedAsteroidList } from '../containers/DateBasedAsteroidList';
+import { Layout } from '../layout';
 
 export const Home = () => {
   const [asteroidsList, setAsteroidsList] = useState<Asteroid[]>([]);
@@ -37,9 +38,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <Fragment>
-      <div>Welcome to Asteroids Mania!</div>
-
+    <Layout title="List">
       <div
         style={{
           display: 'flex',
@@ -55,6 +54,6 @@ export const Home = () => {
       ) : (
         <DateBasedAsteroidList startDate={startDate} endDate={endDate} />
       )}
-    </Fragment>
+    </Layout>
   );
 };
