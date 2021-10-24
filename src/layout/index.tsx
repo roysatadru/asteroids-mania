@@ -21,11 +21,11 @@ export const Layout: FC<LayoutProps> = ({ title, children }) => {
       <Logo />
 
       <Grid container>
-        <Grid item xs={4}>
-          <SideContent>Hi</SideContent>
+        <Grid item xs={4} component="header">
+          <SideContent>{null}</SideContent>
         </Grid>
 
-        <Grid item xs={8}>
+        <Grid item xs={8} component="main">
           <div style={{ height: '100vh', overflowY: 'scroll' }}>{children}</div>
         </Grid>
       </Grid>

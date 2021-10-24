@@ -1,11 +1,7 @@
 export interface Asteroid {
   id: String;
   name: String;
-  isPotentiallyHazardousAsteroid: boolean;
-  estimatedDiameterInKms: {
-    min: number;
-    max: number;
-  };
+  shortName?: String;
   closeApproachDates: {
     prevDate: Date | null;
     nextDate: Date | null;
@@ -13,7 +9,11 @@ export interface Asteroid {
 }
 
 export interface AsteroidFullDetails extends Asteroid {
-  shortName?: String;
+  isPotentiallyHazardousAsteroid: boolean;
+  estimatedDiameterInKms: {
+    min: number;
+    max: number;
+  };
   absoluteMagnitudeH: number;
   nasaJplUrl: String;
 }

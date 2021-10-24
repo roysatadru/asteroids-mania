@@ -42,16 +42,11 @@ export const extractAsteroidInfoFromApiResponse: ExtractAsteroidInfoFromApiRespo
       }
 
       return {
-        id: astInfo.id,
-        name: astInfo.name,
-        isPotentiallyHazardousAsteroid:
-          astInfo.is_potentially_hazardous_asteroid,
-        estimatedDiameterInKms: {
-          min: astInfo.estimated_diameter.kilometers.estimated_diameter_min,
-          max: astInfo.estimated_diameter.kilometers.estimated_diameter_max,
-        },
+        id: astInfo.id as String,
+        name: astInfo.name as String,
+        shortName: astInfo.name_limited as String | undefined,
         closeApproachDates,
-      } as Asteroid;
+      };
     });
 
     afterConversion(astList);

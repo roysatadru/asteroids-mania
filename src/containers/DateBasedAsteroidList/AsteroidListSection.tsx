@@ -16,7 +16,7 @@ export const AsteroidListSection: FC<AsteroidListSectionProps> = ({
   return (
     <div style={{ marginBottom: 80 }}>
       <h3 style={{ textAlign: 'center' }}>{format(date, 'do MMMM, yyyy')}</h3>
-      <AsteroidCardList listData={asteroidList} />
+      <AsteroidCardList listData={asteroidList} showSingleDate />
     </div>
   );
 };

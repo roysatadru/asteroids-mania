@@ -3,14 +3,17 @@ import { styled, alpha, Box } from '@mui/material';
 import { Link, LinkProps } from 'react-router-dom';
 
 import { LogoIcon } from '../../icons/Logo';
+import { secondaryFonts } from '../../theme';
 
 const Container = styled(Box)(({ theme }) => ({
   position: 'fixed',
   top: 0,
   left: 0,
   padding: theme.spacing(4),
+  borderRadius: '50%',
   fontSize: theme.typography.pxToRem(30),
-  fontWeight: 300,
+  fontWeight: 700,
+  fontFamily: secondaryFonts,
   display: 'flex',
   alignItems: 'center',
 }));
@@ -22,8 +25,8 @@ const LogoContainer = styled(Box)(({ theme }) => ({
 
 const LogoBackground = styled(Box)(({ theme }) => ({
   background: '#fe336f',
-  borderRadius: theme.shape.borderRadius,
-  boxShadow: `0 0 0 5px #ffbd68, 0 2px 15px 5px ${alpha('#fff', 0.4)}`,
+  borderRadius: '50%',
+  boxShadow: `0 0 0 5px #fba428, 0 2px 15px 5px ${alpha('#fff', 0.4)}`,
   width: theme.spacing(6),
   height: theme.spacing(6),
   display: 'flex',
@@ -74,8 +77,8 @@ const StyledLink = styled<JSXElementConstructor<Omit<LinkProps, 'to'>>>(
 export const Logo = () => {
   return (
     <Container>
-      <LogoContainer>
-        <LogoBackground component={StyledLink} />
+      <LogoContainer component={StyledLink}>
+        <LogoBackground />
         <LogoIconWithStyles />
       </LogoContainer>
       <StyledLink>Asteroids Mania</StyledLink>
