@@ -30,7 +30,11 @@ export const InnerTile: FC<InnerTileProps> = ({ heading, date }) => {
           }}
         >
           <LogoIcon
-            sx={{ fontSize: '130%', marginRight: 0.8, marginTop: -0.7 }}
+            sx={{
+              fontSize: '130% !important',
+              marginRight: ({ spacing }) => `${spacing(0.8)} !important`,
+              marginTop: ({ spacing }) => `${spacing(-0.7)} !important`,
+            }}
           />{' '}
           {heading}
         </Box>

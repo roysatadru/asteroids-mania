@@ -23,13 +23,13 @@ export const Layout: FC<LayoutProps> = ({
     <div style={{ minHeight: '100vh', position: 'relative' }}>
       <AsteroidIcon
         sx={{
-          width: '20rem',
-          height: '20rem',
-          position: 'fixed',
-          bottom: '-2rem',
-          right: 0,
-          zIndex: -1,
-        }}
+          width: '20rem !important',
+          height: '20rem !important',
+          position: 'fixed !important',
+          bottom: '-2rem !important',
+          right: '0 !important',
+          zIndex: '-1 !important',
+        } as any}
       />
 
       <Helmet>

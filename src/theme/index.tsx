@@ -45,18 +45,19 @@ export const theme: ThemeOptions = {
     },
     h1: {
       fontFamily: `${secondaryFonts} !important`,
-      fontSize: '4rem',
-      color: '#fba428',
-      lineHeight: 1.5,
+      fontSize: '4rem !important',
+      color: '#fba428 !important',
+      lineHeight: '1.5 !important',
     },
     h2: {
-      color: '#ff7d8d',
+      color: '#ff7d8d !important',
       fontFamily: `${secondaryFonts} !important`,
-      fontSize: '3.8rem',
+      fontSize: '3.8rem !important',
     },
     h3: {
-      fontSize: '0.8rem',
-      lineHeight: 1.7,
+      fontSize: '0.8rem !important',
+      lineHeight: '1.7 !important',
+      fontFamily: `${primaryFonts} !important`,
     },
     h4: {
       color: '#48ce9d',
@@ -64,7 +65,7 @@ export const theme: ThemeOptions = {
       fontWeight: '600 !important' as any,
     },
     button: {
-      fontFamily: primaryFonts,
+      fontFamily: `${primaryFonts} !important`,
     },
   },
   shape: {

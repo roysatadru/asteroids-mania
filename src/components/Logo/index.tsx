@@ -55,15 +55,18 @@ const LogoBackground = styled(Box)(({ theme }) => ({
   },
 }));
 
-const LogoIconWithStyles = styled(LogoIcon)(({ theme }) => ({
-  width: theme.spacing(5),
-  height: theme.spacing(5),
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  transform: 'translate(50%, -40%)',
-  zIndex: 2,
-}));
+const LogoIconWithStyles = styled(LogoIcon)(
+  ({ theme }) =>
+    ({
+      width: `${theme.spacing(5)} !important`,
+      height: `${theme.spacing(5)} !important`,
+      position: 'absolute !important',
+      top: '0 !important',
+      right: '0 !important',
+      transform: 'translate(50%, -40%) !important',
+      zIndex: '2 !important',
+    } as any),
+);
 
 const StyledLink = styled<JSXElementConstructor<Omit<LinkProps, 'to'>>>(
   props => (
