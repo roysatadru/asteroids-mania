@@ -43,7 +43,11 @@ export const CloseApproachDatesTile: FC<CloseApproachDatesTileProps> =
               }}
             >
               <LogoIcon
-                sx={{ fontSize: '140%', marginRight: 0.8, marginTop: -0.7 }}
+                sx={{
+                  fontSize: '140% !important',
+                  marginRight: ({ spacing }) => `${spacing(0.8)} !important`,
+                  marginTop: ({ spacing }) => `${spacing(-0.7)} !important`,
+                }}
               />{' '}
               Close Approach Date
             </Box>

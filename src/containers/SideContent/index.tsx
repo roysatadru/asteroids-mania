@@ -56,7 +56,12 @@ export const SideContent: FC<SideContentProps> = ({ heading, subHeading }) => {
 
   return (
     <StyledSideContainer>
-      <Grid container direction="column" height="100%">
+      <Grid
+        container
+        direction="column"
+        height="100%"
+        alignItems="stretch"
+      >
         <Grid item flex="1"></Grid>
 
         <Grid item flex="1">
@@ -64,7 +69,7 @@ export const SideContent: FC<SideContentProps> = ({ heading, subHeading }) => {
             variant="h1"
             sx={{
               paddingLeft: 4,
-              width: '90%',
+              width: '25rem',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
