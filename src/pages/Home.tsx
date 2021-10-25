@@ -38,16 +38,8 @@ export const Home = () => {
   }, []);
 
   return (
-    <Layout title="List">
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '40px 32px',
-        }}
-      >
-        <DateComponent onChange={newValue => setDateRange(newValue)} />
-      </div>
+    <Layout title="Home">
+      <DateComponent onChange={newValue => setDateRange(newValue)} />
 
       {!startDate || !endDate ? (
         <AsteroidCardList listData={asteroidsList} />

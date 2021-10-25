@@ -6,6 +6,8 @@ import { ThemeOptions, alpha } from '@mui/material';
 // #101d5d
 // #fe336f
 // #801436
+// #48ce9d
+// #ff7d8d
 
 const baseFonts = [
   '-apple-system',
@@ -26,7 +28,7 @@ export const secondaryFonts = ['"Open Sans"', ...baseFonts].join(',');
 export const theme: ThemeOptions = {
   palette: {
     primary: {
-      main: '#801436',
+      main: '#a62170',
     },
     secondary: {
       main: '#fba428',
@@ -37,7 +39,7 @@ export const theme: ThemeOptions = {
     },
   },
   typography: {
-    fontFamily: secondaryFonts,
+    fontFamily: primaryFonts,
     allVariants: {
       color: '#fff',
     },

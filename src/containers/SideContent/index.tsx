@@ -15,6 +15,8 @@ const StyledSideContainer = styled(Paper)({
   boxShadow: `0 0 30px 0 ${alpha('#aaa', 0.15)}`,
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
+  backgroundColor: 'transparent',
+  overflow: 'hidden',
 });
 
 export const SideContent: FC<SideContentProps> = ({ children }) => {
