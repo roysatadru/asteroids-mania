@@ -4,7 +4,8 @@ import format from 'date-fns/format';
 import { axios, URIS } from '../../api';
 import { Asteroid } from '../../models/Asteroid';
 import { extractAsteroidInfoFromApiResponse } from '../../utility/mapping-info';
-import { AsteroidListSection } from './AsteroidListSection';
+import { AsteroidCardList } from '../AsteroidCardList';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 interface DateBasedAsteroidListProps {
   startDate: Date;
@@ -13,12 +14,15 @@ interface DateBasedAsteroidListProps {
 
 export const DateBasedAsteroidList: FC<DateBasedAsteroidListProps> = memo(
   ({ startDate, endDate }) => {
+    const { openBackdrop, closeBackdrop } = useAppDispatch();
+
     const [asteroidListData, setAsteroidListData] = useState<
       Array<{ date: Date; asteroidList: Asteroid[] }>
     >([]);
 
     useEffect(() => {
       setAsteroidListData([]);
+      openBackdrop();
 
       axios
         .get<{ near_earth_objects: { [a: string]: any[] } }>(
@@ -35,7 +39,6 @@ export const DateBasedAsteroidList: FC<DateBasedAsteroidListProps> = memo(
 
           Object.entries(nearEarthObjects).forEach(
             ([dateInStrings, asteroidList]) => {
-              
               extractAsteroidInfoFromApiResponse({
                 data: asteroidList,
                 afterConversion: astList => {
@@ -51,8 +54,11 @@ export const DateBasedAsteroidList: FC<DateBasedAsteroidListProps> = memo(
             },
           );
         })
-        .catch(error => {});
-    }, [endDate, startDate]);
+        .catch(error => {})
+        .finally(() => {
+          closeBackdrop();
+        });
+    }, [closeBackdrop, endDate, openBackdrop, startDate]);
 
     return (
       <Fragment>
@@ -60,10 +66,10 @@ export const DateBasedAsteroidList: FC<DateBasedAsteroidListProps> = memo(
           const { date, asteroidList } = info;
 
           return (
-            <AsteroidListSection
+            <AsteroidCardList
               key={date.toISOString() as Key}
-              date={date}
-              asteroidList={asteroidList}
+              listData={asteroidList}
+              showSingleDate
             />
           );
         })}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 import { DateRange } from '@material-ui/pickers/DateRangePicker/RangeTypes';
 
 import { axios, URIS } from '../api';
@@ -8,8 +9,11 @@ import { extractAsteroidInfoFromApiResponse } from '../utility/mapping-info';
 import { AsteroidCardList } from '../containers/AsteroidCardList';
 import { DateBasedAsteroidList } from '../containers/DateBasedAsteroidList';
 import { Layout } from '../layout';
+import { useAppDispatch } from '../hooks/useAppDispatch';
 
 export const Home = () => {
+  const { openBackdrop, closeBackdrop } = useAppDispatch();
+
   const [asteroidsList, setAsteroidsList] = useState<Asteroid[]>([]);
   const [[startDate, endDate], setDateRange] = useState<DateRange<Date>>([
     null,
@@ -17,6 +21,8 @@ export const Home = () => {
   ]);
 
   useEffect(() => {
+    openBackdrop();
+
     axios
       .get<{ near_earth_objects: any[] }>(URIS.LIST_ASTEROIDS, {
         params: {
@@ -34,8 +40,11 @@ export const Home = () => {
           },
         });
       })
-      .catch(error => {});
-  }, []);
+      .catch(error => {})
+      .finally(() => {
+        closeBackdrop();
+      });
+  }, [closeBackdrop, openBackdrop]);
 
   return (
     <Layout title="Home">
@@ -46,6 +55,8 @@ export const Home = () => {
       ) : (
         <DateBasedAsteroidList startDate={startDate} endDate={endDate} />
       )}
+
+      <Box sx={{ height: ({ spacing }) => spacing(10) }} />
     </Layout>
   );
 };

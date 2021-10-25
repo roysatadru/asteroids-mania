@@ -5,12 +5,18 @@ import { Global, css } from '@emotion/react';
 
 import { Home } from './pages/Home';
 import { AsteroidDetails } from './pages/AsteroidDetails';
+import { BackdropState, useAppSelector } from './store';
+import { BackdropLoader } from './components/BackdropLoader';
 
 export const App = () => {
   const theme = useTheme();
 
+  const backdropOpen = useAppSelector(state => state.backdrop);
+
   return (
     <Fragment>
+      <BackdropLoader open={backdropOpen === BackdropState.OPENED} />
+
       <Global
         styles={css`
           html {
@@ -43,7 +49,7 @@ export const App = () => {
 
           ::selection {
             background-color: #ff7d8d;
-            color: #000;
+            color: #2d122b;
           }
         `}
       />

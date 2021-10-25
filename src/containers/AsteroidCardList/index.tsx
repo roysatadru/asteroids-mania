@@ -14,7 +14,7 @@ export const AsteroidCardList: FC<AsteroidCardListProps> = ({
   showSingleDate,
 }) => {
   return (
-    <Box sx={{ margin: ({ spacing }) => spacing(4, 0, 8, 0) }}>
+    <Box sx={{ margin: ({ spacing }) => spacing(4, 0, 0, 0) }}>
       {listData.map(astInfo => (
         <AsteroidCard
           key={astInfo.id as Key}
