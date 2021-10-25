@@ -1,2 +1,0 @@
-(this["webpackJsonpasteroids-mania"]=this["webpackJsonpasteroids-mania"]||[]).push([[0],{9:function(e,t,n){"use strict";n.r(t);var s=n(1),i=n.n(s),r=n(3),a=n.n(r),c=n(0),o=function(){return Object(c.jsx)("div",{children:"Welcome to Asteroids Mania!"})};a.a.render(Object(c.jsx)(i.a.StrictMode,{children:Object(c.jsx)(o,{})}),document.getElementById("root"))}},[[9,1,2]]]);
-//# sourceMappingURL=main.0299becf.chunk.js.map
