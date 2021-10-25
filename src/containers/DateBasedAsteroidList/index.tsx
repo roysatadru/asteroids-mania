@@ -14,7 +14,7 @@ interface DateBasedAsteroidListProps {
 
 export const DateBasedAsteroidList: FC<DateBasedAsteroidListProps> = memo(
   ({ startDate, endDate }) => {
-    const { openBackdrop, closeBackdrop } = useAppDispatch();
+    const { openBackdrop, closeBackdrop, openSnackbar } = useAppDispatch();
 
     const [asteroidListData, setAsteroidListData] = useState<
       Array<{ date: Date; asteroidList: Asteroid[] }>
@@ -54,11 +54,15 @@ export const DateBasedAsteroidList: FC<DateBasedAsteroidListProps> = memo(
             },
           );
         })
-        .catch(error => {})
+        .catch(error => {
+          openSnackbar({
+            message: 'Something went wrong! Please try again after sometime...',
+          });
+        })
         .finally(() => {
           closeBackdrop();
         });
-    }, [closeBackdrop, endDate, openBackdrop, startDate]);
+    }, [closeBackdrop, endDate, openBackdrop, openSnackbar, startDate]);
 
     return (
       <Fragment>

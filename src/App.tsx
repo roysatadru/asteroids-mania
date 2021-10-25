@@ -7,6 +7,7 @@ import { Home } from './pages/Home';
 import { AsteroidDetails } from './pages/AsteroidDetails';
 import { BackdropState, useAppSelector } from './store';
 import { BackdropLoader } from './components/BackdropLoader';
+import { ErrorSnackbar } from './components/ErrorSnackbar';
 
 export const App = () => {
   const theme = useTheme();
@@ -16,6 +17,7 @@ export const App = () => {
   return (
     <Fragment>
       <BackdropLoader open={backdropOpen === BackdropState.OPENED} />
+      <ErrorSnackbar />
 
       <Global
         styles={css`

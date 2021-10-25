@@ -1,13 +1,19 @@
 import { useMemo } from 'react';
 import { bindActionCreators } from 'redux';
 
-import { useDispatch, backdropSliceActions } from '../store';
+import {
+  useDispatch,
+  backdropSliceActions,
+  snackbarSliceActions,
+} from '../store';
+
+const sliceActions = {
+  ...backdropSliceActions,
+  ...snackbarSliceActions,
+};
 
 export const useAppDispatch = () => {
   const dispatch = useDispatch();
 
-  return useMemo(
-    () => bindActionCreators(backdropSliceActions, dispatch),
-    [dispatch],
-  );
+  return useMemo(() => bindActionCreators(sliceActions, dispatch), [dispatch]);
 };

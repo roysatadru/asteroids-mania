@@ -37,7 +37,7 @@ export const AsteroidDetails: FC<RouteComponentProps<MatchParams>> = () => {
   const params = useParams<MatchParams>();
   const { push } = useHistory();
 
-  const { closeBackdrop, openBackdrop } = useAppDispatch();
+  const { closeBackdrop, openBackdrop, openSnackbar } = useAppDispatch();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -69,13 +69,32 @@ export const AsteroidDetails: FC<RouteComponentProps<MatchParams>> = () => {
           },
         });
       })
-      .catch(error => {})
+      .catch(error => {
+        if (error.response.status === 404) {
+          openSnackbar({
+            message: 'Asteroid not found!',
+          });
+        } else {
+          openSnackbar({
+            message: 'Something went wrong! Please try again after sometime...',
+          });
+        }
+
+        push('/home');
+      })
       .finally(() => {
         closeBackdrop();
       });
 
     inputRef.current?.focus();
-  }, [closeBackdrop, openBackdrop, params.id]);
+  }, [closeBackdrop, openBackdrop, openSnackbar, params.id, push]);
+
+  const pushLookUpPage = () => {
+    if (inputRef.current?.value) {
+      push(`/lookup/${inputRef.current.value}`);
+      inputRef.current.value = '';
+    }
+  };
 
   return (
     <Layout
@@ -87,23 +106,22 @@ export const AsteroidDetails: FC<RouteComponentProps<MatchParams>> = () => {
           : ''
       }
     >
-      <Input
-        inputRef={inputRef}
-        placeholder="Lookup asteroids with ids"
-        endAdornment={
-          <IconButton
-            size="large"
-            onClick={() => {
-              if (inputRef.current?.value) {
-                push(`/lookup/${inputRef.current.value}`);
-                inputRef.current.value = '';
-              }
-            }}
-          >
-            <SearchIcon fontSize="large" />
-          </IconButton>
-        }
-      />
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          pushLookUpPage();
+        }}
+      >
+        <Input
+          inputRef={inputRef}
+          placeholder="Lookup asteroids with ids"
+          endAdornment={
+            <IconButton type="submit" size="large" onClick={pushLookUpPage}>
+              <SearchIcon fontSize="large" />
+            </IconButton>
+          }
+        />
+      </form>
 
       {!!asteroidInfo && (
         <Box

@@ -12,7 +12,7 @@ import { Layout } from '../layout';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 
 export const Home = () => {
-  const { openBackdrop, closeBackdrop } = useAppDispatch();
+  const { openBackdrop, closeBackdrop, openSnackbar } = useAppDispatch();
 
   const [asteroidsList, setAsteroidsList] = useState<Asteroid[]>([]);
   const [[startDate, endDate], setDateRange] = useState<DateRange<Date>>([
@@ -40,11 +40,15 @@ export const Home = () => {
           },
         });
       })
-      .catch(error => {})
+      .catch(error => {
+        openSnackbar({
+          message: 'Something went wrong! Please try again after sometime...',
+        });
+      })
       .finally(() => {
         closeBackdrop();
       });
-  }, [closeBackdrop, openBackdrop]);
+  }, [closeBackdrop, openBackdrop, openSnackbar]);
 
   return (
     <Layout
