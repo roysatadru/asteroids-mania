@@ -16,6 +16,12 @@ const Container = styled(Box)(({ theme }) => ({
   fontFamily: secondaryFonts,
   display: 'flex',
   alignItems: 'center',
+  WebkitTouchCallout: 'none',
+  WebkitUserSelect: 'none',
+  KhtmlUserSelect: 'none',
+  MozUserSelect: 'none',
+  msUserSelect: 'none',
+  userSelect: 'none',
 }));
 
 const LogoContainer = styled(Box)(({ theme }) => ({

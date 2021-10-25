@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Box, alpha } from '@mui/material';
 import format from 'date-fns/format';
 
-import { Tile } from './Tile';
+import { Tile } from '../../components/Tile';
 import { LogoIcon } from '../../icons/Logo';
 
 interface InnerTileProps {

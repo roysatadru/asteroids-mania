@@ -43,6 +43,21 @@ export const theme: ThemeOptions = {
     allVariants: {
       color: '#fff',
     },
+    h1: {
+      fontFamily: `${secondaryFonts} !important`,
+      fontSize: '4rem',
+      color: '#fba428',
+      lineHeight: 1.5,
+    },
+    h2: {
+      color: '#ff7d8d',
+      fontFamily: `${secondaryFonts} !important`,
+      fontSize: '3.8rem',
+    },
+    h3: {
+      fontSize: '0.8rem',
+      lineHeight: 1.7,
+    },
     h4: {
       color: '#48ce9d',
       fontFamily: `${secondaryFonts} !important`,
@@ -50,7 +65,7 @@ export const theme: ThemeOptions = {
     },
     button: {
       fontFamily: primaryFonts,
-    }
+    },
   },
   shape: {
     borderRadius: 19.2,

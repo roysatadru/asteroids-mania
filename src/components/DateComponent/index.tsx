@@ -10,6 +10,10 @@ import {
 import { ThemeProvider, createTheme, makeStyles } from '@material-ui/core';
 import { DateRange, MobileDateRangePicker } from '@material-ui/pickers';
 import format from 'date-fns/format';
+import differenceInDays from 'date-fns/differenceInDays';
+import isEqual from 'date-fns/isEqual';
+import addDays from 'date-fns/addDays';
+import sub from 'date-fns/sub';
 
 import { theme } from '../../theme/mui4theme';
 import { primaryFonts } from '../../theme';
@@ -131,8 +135,26 @@ export const DateComponent: FC<DateComponentProps> = ({ onChange }) => {
             setEndDate(dateRange[1]);
           }}
           value={dateRange}
-          onChange={newValue => {
-            setDateRange(newValue);
+          onChange={([startDate, endDate]) => {
+            setDateRange(curValue => {
+              if (
+                !isEqual(startDate!, curValue[0]!) &&
+                endDate &&
+                differenceInDays(endDate, startDate!) > 6
+              ) {
+                return [startDate, addDays(startDate!, 6)];
+              }
+
+              if (
+                !isEqual(endDate!, curValue[1]!) &&
+                startDate &&
+                differenceInDays(endDate!, startDate) > 6
+              ) {
+                return [sub(endDate!, { days: 6 }), endDate];
+              }
+
+              return [startDate, endDate];
+            });
           }}
           DialogProps={{
             classes: useStyles(),

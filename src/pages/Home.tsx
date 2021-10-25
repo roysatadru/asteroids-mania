@@ -47,7 +47,11 @@ export const Home = () => {
   }, [closeBackdrop, openBackdrop]);
 
   return (
-    <Layout title="Home">
+    <Layout
+      title="Home"
+      heading="Home"
+      subHeading="This is a fun project where we can know more about the approach dates of an asteroid"
+    >
       <DateComponent onChange={newValue => setDateRange(newValue)} />
 
       {!startDate || !endDate ? (
