@@ -28,7 +28,7 @@ export const App = () => {
               font-size: 90%;
             }
 
-            @media only screen and (min-width: 1000px) {
+            @media only screen and (min-width: 1100px) {
               font-size: 100%;
             }
 
