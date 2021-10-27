@@ -32,7 +32,8 @@ export const ErrorSnackbar: FC<{}> = () => {
         }}
         severity="error"
         sx={{
-          background: ({ palette }) => palette.error.dark,
+          background: ({ palette }) => `${palette.error.dark} !important`,
+          color: '#fff !important',
         }}
       >
         {message}

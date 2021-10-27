@@ -56,12 +56,7 @@ export const SideContent: FC<SideContentProps> = ({ heading, subHeading }) => {
 
   return (
     <StyledSideContainer>
-      <Grid
-        container
-        direction="column"
-        height="100%"
-        alignItems="stretch"
-      >
+      <Grid container direction="column" height="100%" alignItems="stretch">
         <Grid item flex="1"></Grid>
 
         <Grid item flex="1">
@@ -102,20 +97,23 @@ export const SideContent: FC<SideContentProps> = ({ heading, subHeading }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   background: alpha('#ff7d8d', 0.7),
-                  width: '180px',
+                  boxShadow: `0 0 0 3px ${alpha('#ff7d8d', 0.7)}`,
+                  width: '160px',
                   margin: 'auto',
-                  borderRadius: 0.2,
+                  borderRadius: 0.5,
+                  border: '2px dashed #200e1f',
+                  height: 35,
                 }}
               >
                 Fun Facts
               </Box>
             }
             headingSx={{
-              fontSize: ({ typography: { pxToRem } }) => pxToRem(24),
+              fontSize: ({ typography: { pxToRem } }) => pxToRem(18),
               fontWeight: 700,
               fontFamily: secondaryFonts,
               color: '#200e1f',
-              marginBottom: -3,
+              marginBottom: -2,
             }}
           >
             <Box
