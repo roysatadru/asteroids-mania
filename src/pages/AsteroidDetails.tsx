@@ -35,7 +35,7 @@ const boxSx: SxProps<Theme> = {
 
 export const AsteroidDetails: FC<RouteComponentProps<MatchParams>> = () => {
   const params = useParams<MatchParams>();
-  const { push } = useHistory();
+  const { push, replace } = useHistory();
 
   const { closeBackdrop, openBackdrop, openSnackbar } = useAppDispatch();
 
@@ -80,14 +80,14 @@ export const AsteroidDetails: FC<RouteComponentProps<MatchParams>> = () => {
           });
         }
 
-        push('/home');
+        replace('/home');
       })
       .finally(() => {
         closeBackdrop();
       });
 
     inputRef.current?.focus();
-  }, [closeBackdrop, openBackdrop, openSnackbar, params.id, push]);
+  }, [closeBackdrop, openBackdrop, openSnackbar, params.id, replace]);
 
   const pushLookUpPage = () => {
     if (inputRef.current?.value) {
@@ -130,7 +130,10 @@ export const AsteroidDetails: FC<RouteComponentProps<MatchParams>> = () => {
           }}
           component="main"
         >
-          <Typography variant="h2" sx={{ marginBottom: 2 }}>
+          <Typography
+            variant="h2"
+            sx={{ marginBottom: ({ spacing }) => `${spacing(2)} !important` }}
+          >
             {asteroidInfo?.shortName || asteroidInfo?.name}
           </Typography>
 

@@ -16,7 +16,7 @@ import addDays from 'date-fns/addDays';
 import sub from 'date-fns/sub';
 
 import { theme } from '../../theme/mui4theme';
-import { primaryFonts } from '../../theme';
+import { primaryFonts, secondaryFonts } from '../../theme';
 
 const StyledButtonBase = styled(ButtonBase)(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
@@ -240,6 +240,7 @@ const useStyles = makeStyles(theme => ({
 
     '& .MuiPickersCalendar-weekContainer *': {
       color: '#eee',
+      fontFamily: secondaryFonts,
     },
 
     '& .MuiPickersCalendar-weekContainer .MuiPickersDay-today': {
