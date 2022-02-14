@@ -1,3 +1,5 @@
+Project hosted at https://roysatadru.github.io/asteroids-mania
+
 # Asteroids mania
 
 A fun project (built with 💕 & ReactJS) to know more about Asteroids
